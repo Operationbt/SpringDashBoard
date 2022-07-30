@@ -7,6 +7,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,11 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/springdashboarddb?serverTimezone=UTC";
-	static final String USER = "root";
-	static final String PASS = "";
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Inject
+	private DataSource dataSource;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -41,9 +43,10 @@ public class HomeController {
 		model.addAttribute("myName", " 백지훈");
 		
 		//db연동 테스트
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			Connection conn = (Connection) dataSource.getConnection();
 			System.out.println("DB 연결 완료");
 			model.addAttribute("dbConn", "DB 연결 완료");
 			
