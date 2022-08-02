@@ -33,7 +33,7 @@ public class HomeController {
 	
 	@Inject
 	private DataSource dataSource;
-	private spbdService service; //DB사용하는거
+	private spbdService service = new spbdServiceImpl(); //DB사용하는거
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -64,6 +64,9 @@ public class HomeController {
 			System.out.println("DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
 		}
+		
+		if(service == null)
+			System.out.println("null");
 		
 		//db 읽기 테스트
 		try {
