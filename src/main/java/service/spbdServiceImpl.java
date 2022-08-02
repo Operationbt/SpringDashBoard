@@ -6,10 +6,11 @@ import dao.spbdDAO;
 import dao.spbdDAOImpl;
 import dto.spbdPostDTO;
 
+
 public class spbdServiceImpl implements spbdService{
 	
 	@Inject
-	private spbdDAO dao = new spbdDAOImpl();
+	private spbdDAO dao;
 
 	@Override
 	public spbdPostDTO read(int post_id) throws Exception {

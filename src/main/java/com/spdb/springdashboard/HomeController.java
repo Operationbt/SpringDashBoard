@@ -33,7 +33,9 @@ public class HomeController {
 	
 	@Inject
 	private DataSource dataSource;
-	private spbdService service = new spbdServiceImpl(); //DB사용하는거
+	
+	@Inject
+	private spbdService service; //DB사용하는거
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
