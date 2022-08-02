@@ -17,6 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dao.spbdDAO;
+import dao.spbdDAOImpl;
+import dto.spbdPostDTO;
+import service.spbdService;
+import service.spbdServiceImpl;
+
 /**
  * Handles requests for the application home page.
  */
@@ -27,6 +33,8 @@ public class HomeController {
 	
 	@Inject
 	private DataSource dataSource;
+	private spbdService service; //DB사용하는거
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -43,7 +51,6 @@ public class HomeController {
 		model.addAttribute("myName", " 백지훈");
 		
 		//db연동 테스트
-		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = (Connection) dataSource.getConnection();
@@ -56,6 +63,14 @@ public class HomeController {
 		} catch (SQLException e) {
 			System.out.println("DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
+		}
+		
+		//db 읽기 테스트
+		try {
+			System.out.println(service.read(1000));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return "home";
