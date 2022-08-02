@@ -10,6 +10,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.spbdDAO;
-import dao.spbdDAOImpl;
-import dto.spbdPostDTO;
-import service.spbdService;
-import service.spbdServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -39,8 +35,8 @@ public class HomeController {
 	//@Autowired
 	//private spbdService service; //DB사용하는거
 	
-	//@Inject
-	//private SqlSessionFactory sqlFactory;
+	@Inject
+	private SqlSessionFactory sqlFactory;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -67,8 +63,16 @@ public class HomeController {
 		} catch (Exception e) {
 			System.out.println("DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
+			e.printStackTrace();
 		}
 		
+		try {
+			SqlSession session = sqlFactory.openSession();
+			System.out.println("성공 : " + session);
+		} catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+		}
 		
 		//db 읽기 테스트
 		/*
