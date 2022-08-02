@@ -10,8 +10,10 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +36,11 @@ public class HomeController {
 	@Inject
 	private DataSource dataSource;
 	
-	@Inject
-	private spbdService service; //DB사용하는거
+	//@Autowired
+	//private spbdService service; //DB사용하는거
+	
+	//@Inject
+	//private SqlSessionFactory sqlFactory;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -54,30 +59,26 @@ public class HomeController {
 		
 		//db연동 테스트
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = (Connection) dataSource.getConnection();
 			System.out.println("DB 연결 완료");
 			model.addAttribute("dbConn", "DB 연결 완료");
 			
-		} catch (ClassNotFoundException e) {
-			System.out.println("JDBC 드라이버 로드 에러");
-			model.addAttribute("dbConn", "JDBC 드라이버 로드 에러");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
 		}
 		
-		if(service == null)
-			System.out.println("null");
 		
 		//db 읽기 테스트
+		/*
 		try {
 			System.out.println(service.read(1000));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		return "home";
 	}
 	

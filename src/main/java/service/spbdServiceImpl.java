@@ -2,14 +2,17 @@ package service;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import dao.spbdDAO;
 import dao.spbdDAOImpl;
 import dto.spbdPostDTO;
 
-
+@Service
 public class spbdServiceImpl implements spbdService{
 	
-	@Inject
+	@Autowired
 	private spbdDAO dao;
 
 	@Override
