@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 
 /**
  * Handles requests for the application home page.
@@ -35,8 +35,12 @@ public class HomeController {
 	//@Autowired
 	//private spbdService service; //DB사용하는거
 	
-	@Inject
-	private SqlSessionFactory sqlFactory;
+	//@Inject
+	//private SqlSessionFactory sqlFactory;
+	
+	@Resource(name = "postDAO")
+	private PostDAO dao;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -65,7 +69,7 @@ public class HomeController {
 			model.addAttribute("dbConn", "DB 연결 오류");
 			e.printStackTrace();
 		}
-		
+		/*
 		try {
 			SqlSession session = sqlFactory.openSession();
 			System.out.println("성공 : " + session);
@@ -73,6 +77,9 @@ public class HomeController {
 			System.out.println("실패");
 			e.printStackTrace();
 		}
+		*/
+		PostDTO post = dao.read(1000);
+		System.out.println("읽기 테스트" + post);
 		
 		//db 읽기 테스트
 		/*

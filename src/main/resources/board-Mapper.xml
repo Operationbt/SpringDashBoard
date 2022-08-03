@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board-Mapper">
-
-<!--  
-	<select id="read" resultType="dto.spbdPostDTO">
-		SELECT *
-		FROM springdashboarddb_post_tb
-		WHERE post_id = #{post_id}
+<mapper namespace="boardMapper">
+	<select id="read" parameterType="int" resultType="PostDTO">
+		SELECT * FROM post_tb WHERE post_id = #{value}
 	</select>
--->
+	<select id="readAll" resultType="PostDTO">
+		SELECT * FROM post_tb;
+	</select>
 </mapper>
