@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
 	<select id="read" parameterType="int" resultType="PostDTO">
-		SELECT * FROM post_tb WHERE post_id = #{value}
+		SELECT *
+		FROM post_tb
+		WHERE post_id = #{value}
 	</select>
 	<select id="readAll" resultType="PostDTO">
-		SELECT * FROM post_tb;
+		SELECT *
+		FROM post_tb;
 	</select>
 </mapper>

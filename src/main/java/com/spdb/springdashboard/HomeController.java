@@ -81,6 +81,9 @@ public class HomeController {
 		PostDTO post = dao.read(1000);
 		System.out.println("읽기 테스트" + post);
 		
+		System.out.println(dao.readAll());
+		model.addAttribute("list", dao.readAll());
+		
 		//db 읽기 테스트
 		/*
 		try {
