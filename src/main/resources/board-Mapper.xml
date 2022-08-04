@@ -10,4 +10,9 @@
 		SELECT *
 		FROM post_tb;
 	</select>
+	<insert id="write" parameterType="PostDTO">
+		INSERT INTO post_tb (post_writer, post_title, post_content, post_date)
+		VALUES (#{post_writer}, #{post_title}, #{post_content}, now());
+	</insert>
+	
 </mapper>
