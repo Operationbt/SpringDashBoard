@@ -8,39 +8,40 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-<P>  My name is ${myName}. </P>
-<P>DB연결 상태 : ${dbConn}</P>
-
-<table border="1" width="880">
-        <tr>
-        <td width="77">
-            <p align="center">글번호</p>
-        </td>
-        <td width="327">
-            <p align="center">제목</p>
-        </td>
-        <td width="197">
-            <p align="center">작성자</p>
-        </td>
-        <td width="155">
-            <p align="center">작성일</p>
-        </td>
-        </tr>
-		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        <c:forEach items="${list}" var="postDTO">
-			<tr>
-		        <td>${postDTO.post_id}</td>
-		        <td>${postDTO.post_title}</td>
-		        <td>${postDTO.post_writer}</td>
-		        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${postDTO.post_date}" />
-				</td>
-			</tr>
-		</c:forEach>
-</table>
+	<h1>
+		Hello world!  
+	</h1>
+	
+	<P>  The time on the server is ${serverTime}. </P>
+	<P>  My name is ${myName}. </P>
+	<P>DB연결 상태 : ${dbConn}</P>
+	
+	<table border="1" width="880">
+	        <tr>
+	        <td width="77">
+	            <p align="center">글번호</p>
+	        </td>
+	        <td width="327">
+	            <p align="center">제목</p>
+	        </td>
+	        <td width="197">
+	            <p align="center">작성자</p>
+	        </td>
+	        <td width="155">
+	            <p align="center">작성일</p>
+	        </td>
+	        </tr>
+			<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	        <c:forEach items="${list}" var="postDTO">
+				<tr>
+			        <td><a href="./read?post_id=${postDTO.post_id}">${postDTO.post_id}</a></td>
+			        <td><a href="./read?post_id=${postDTO.post_id}">${postDTO.post_title}</a></td>
+			        <td>${postDTO.post_writer}</td>
+			        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${postDTO.post_date}" />
+					</td>
+				</tr>
+			</c:forEach>		
+	</table>
+	<a href="./write"><button type ="submit">글쓰기</button></a>
 </body>
 </html>

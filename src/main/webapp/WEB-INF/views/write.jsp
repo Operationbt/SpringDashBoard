@@ -3,9 +3,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글쓰기</title>
 </head>
 <body>
-
+<head>
+<title>글쓰기</title>
+</head>
+	<form method = "post"> 
+		<p><label>제목</label><input type="text" name ="title"></p>
+		<p><label>작성자</label><input type="text" name="writer" size="15"></p>
+		<label>내용</label><p>
+		<%-- 글자수 제한 1000자 만들어야함 제이쿼리 쓰는듯 --%>
+		<textarea rows="15" cols="65" name = "content"></textarea><p>
+		<button type = "submit">등록</button>
+	</form>
 </body>
 </html>

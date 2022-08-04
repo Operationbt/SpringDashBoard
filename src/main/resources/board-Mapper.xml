@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
+	<!-- Create -->
+	<insert id="write" parameterType="PostDTO">
+		INSERT INTO post_tb (post_writer, post_title, post_content, post_date)
+		VALUES (#{post_writer}, #{post_title}, #{post_content}, now());
+	</insert>
+	<!-- Read -->
 	<select id="read" parameterType="int" resultType="PostDTO">
 		SELECT *
 		FROM post_tb
@@ -10,16 +16,14 @@
 		SELECT *
 		FROM post_tb;
 	</select>
-	<insert id="write" parameterType="PostDTO">
-		INSERT INTO post_tb (post_writer, post_title, post_content, post_date)
-		VALUES (#{post_writer}, #{post_title}, #{post_content}, now());
-	</insert>
-	<delete id="delete" parameterType="int">
-		DELETE FROM post_tb
-		WHERE post_id = #{value};
-	</delete>
+	<!-- Update -->
 	<update id="update" parameterType="PostDTO">
 		UPDATE post_tb SET post_title = #{post_title}, post_content = #{post_content}
 		WHERE (post_id = #{post_id});
 	</update>
+	<!-- Delete -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM post_tb
+		WHERE post_id = #{value};
+	</delete>
 </mapper>

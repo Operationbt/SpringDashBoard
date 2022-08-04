@@ -104,6 +104,7 @@ public class HomeController {
 		model.addAttribute("list", dao.readAll());
 		*/
 		
+		/*
 		System.out.println("수정 테스트");
 		PostDTO newPost = dao.read(1006);
 		newPost.setPost_title("제목 바꾸기");
@@ -112,6 +113,7 @@ public class HomeController {
 		System.out.println("수정 확인");
 		System.out.println(dao.readAll());
 		model.addAttribute("list", dao.readAll());
+		*/
 		
 		//db 읽기 테스트
 		/*
