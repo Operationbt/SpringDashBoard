@@ -84,7 +84,7 @@ public class HomeController {
 		System.out.println(dao.readAll());
 		model.addAttribute("list", dao.readAll());
 		
-		
+		/*
 		System.out.println("쓰기 테스트");
 		post = new PostDTO();
 		post.setPost_writer("tester");
@@ -94,7 +94,7 @@ public class HomeController {
 		System.out.println("쓴거 확인");
 		System.out.println(dao.readAll());
 		model.addAttribute("list", dao.readAll());
-		
+		*/
 		
 		/*
 		System.out.println("삭제 테스트");
@@ -103,6 +103,15 @@ public class HomeController {
 		System.out.println(dao.readAll());
 		model.addAttribute("list", dao.readAll());
 		*/
+		
+		System.out.println("수정 테스트");
+		PostDTO newPost = dao.read(1006);
+		newPost.setPost_title("제목 바꾸기");
+		newPost.setPost_content("내용 바꾸기");
+		dao.update(newPost);
+		System.out.println("수정 확인");
+		System.out.println(dao.readAll());
+		model.addAttribute("list", dao.readAll());
 		
 		//db 읽기 테스트
 		/*

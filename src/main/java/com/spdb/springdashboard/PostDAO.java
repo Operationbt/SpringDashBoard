@@ -27,6 +27,10 @@ public class PostDAO {
 		List<PostDTO> postList = session.selectList("boardMapper.readAll");
 		return postList;
 	}
+	//Update
+	public void update(PostDTO newPost) {
+		session.update("boardMapper.update", newPost);
+	}
 	
 	//Delete
 	public void delete(int post_id) {

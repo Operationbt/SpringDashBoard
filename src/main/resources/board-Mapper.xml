@@ -18,5 +18,8 @@
 		DELETE FROM post_tb
 		WHERE post_id = #{value};
 	</delete>
-	
+	<update id="update" parameterType="PostDTO">
+		UPDATE post_tb SET post_title = #{post_title}, post_content = #{post_content}
+		WHERE (post_id = #{post_id});
+	</update>
 </mapper>
