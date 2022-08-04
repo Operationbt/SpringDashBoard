@@ -16,7 +16,7 @@
 		<br>
 		<textarea name=content rows ="10" cols="70" readonly="readonly">${postDTO.post_content}</textarea>
 		<br>
-		<button type="submit" formaction="./modify" formmethod="post">수정</button>
+		<button type="submit" formaction="./modify" formmethod="get">수정</button>
 		<button type="submit" formaction="./delete" formmethod="post">삭제</button>
 		<button type="submit" formaction="./" formmethod="post">목록</button>
 	</form>
