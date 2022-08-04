@@ -14,9 +14,11 @@ public class PostDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
+	//Creat
 	public void write(PostDTO post) {
 		session.insert("boardMapper.write", post);
 	}
+	//Read
 	public PostDTO read(int post_id) {
 		PostDTO post = session.selectOne("boardMapper.read", post_id);
 		return post;
@@ -24,5 +26,10 @@ public class PostDAO {
 	public List<PostDTO> readAll() {
 		List<PostDTO> postList = session.selectList("boardMapper.readAll");
 		return postList;
+	}
+	
+	//Delete
+	public void delete(int post_id) {
+		session.delete("boardMapper.delete", post_id);
 	}
 }
