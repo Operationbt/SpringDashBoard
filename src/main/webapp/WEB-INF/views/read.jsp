@@ -7,6 +7,7 @@
 <title>글읽기</title>
 </head>
 <body>
+	<h1>글 읽기</h1>
 	<form method="post">
 		<p><label>글번호</label> <input type="text" name ="id" value ="${postDTO.post_id}" readonly="readonly"></p>
 		<p><label>제목</label> <input type="text" name ="title" value ="${postDTO.post_title}" readonly="readonly"></p>
@@ -15,9 +16,9 @@
 		<br>
 		<textarea name=content rows ="10" cols="70" readonly="readonly">${postDTO.post_content}</textarea>
 		<br>
-		<button type="submit" formaction="modify" formmethod="get">수정</button>
-		<button type="submit" formaction="delete" formmethod="post">삭제</button>
-		<button type="submit" formaction="home" formmethod="get">목록</button>
+		<button type="submit" formaction="./modify" formmethod="post">수정</button>
+		<button type="submit" formaction="./delete" formmethod="post">삭제</button>
+		<button type="submit" formaction="./" formmethod="post">목록</button>
 	</form>
 		
 </body>

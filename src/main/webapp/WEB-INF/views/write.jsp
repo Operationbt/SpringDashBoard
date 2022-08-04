@@ -6,9 +6,7 @@
 <title>글쓰기</title>
 </head>
 <body>
-<head>
-<title>글쓰기</title>
-</head>
+	<h1>글 쓰기</h1>
 	<form method = "post"> 
 		<p><label>제목</label><input type="text" name ="title"></p>
 		<p><label>작성자</label><input type="text" name="writer" size="15"></p>
