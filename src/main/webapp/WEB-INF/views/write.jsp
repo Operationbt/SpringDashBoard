@@ -6,6 +6,7 @@
 <title>글쓰기</title>
 </head>
 <body>
+	<jsp:include page="navigation.jsp" flush="false"></jsp:include>
 	<h1>글 쓰기</h1>
 	<form method = "post"> 
 		<p><label>제목</label><input type="text" name ="title"></p>

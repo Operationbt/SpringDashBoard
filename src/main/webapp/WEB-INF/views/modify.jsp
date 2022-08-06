@@ -7,6 +7,7 @@
 <title>글 수정</title>
 </head>
 <body>
+	<jsp:include page="navigation.jsp" flush="false"></jsp:include>
 	<h1>글 수정</h1>
 	<form action="modify" method = "post"> 
 		<p><label>제목</label><input type="text" name ="title" value="${postDTO.post_title}"></p>
