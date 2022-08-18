@@ -9,13 +9,12 @@
 </head>
 <body>
 	<h1>
-		Hello world!  
+		Hello Oracle!  
 	</h1>
 	
 	<P>  The time on the server is ${serverTime}. </P>
 	<P>  My name is ${myName}. </P>
-	<P>MySQL DB연결 상태 : ${dbConn}</P>
-	<P><a href="./oracle">Oracle DB로 이동</a></P>
+	<P>Oracle DB연결 상태 : ${dbConn}</P>
 	
 	<table border="1" width="880">
 	        <tr>

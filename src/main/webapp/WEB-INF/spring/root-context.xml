@@ -20,7 +20,12 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="642531"></property>
 	</bean>
-	
+	<bean id="dataSource_oracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="SYSTEM"></property>
+		<property name="password" value="642531"></property>
+	</bean>
 	<!-- sqlSessionFactory --> 
 	<!-- Mybatis 사용하기 위함 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -28,11 +33,19 @@
 		<property name="configLocation" value="classpath:/myBatisConfig.xml" />
 		<property name="mapperLocations" value="classpath:/board-Mapper.xml" />
 	</bean>
+	<bean id="sqlSessionFactory_oracle" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource_oracle"></property>
+		<property name="configLocation" value="classpath:/myBatisConfig.xml" />
+		<property name="mapperLocations" value="classpath:/board-Mapper_oracle.xml" />
+	</bean>
 	
 	<!-- SqlSessionTemplate -->
 	<!-- "sqlSessionFactory" 객체를 가져가서 동기화 처리 등 추가 기능을 제공하는 클래스 -->
 	<bean id="sqlSessoinTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="sqlSessoinTemplate_oracle" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory_oracle" />
 	</bean>
 	
 </beans>

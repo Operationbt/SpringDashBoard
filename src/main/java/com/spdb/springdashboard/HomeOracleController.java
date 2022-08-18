@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class HomeOracleController {
+	private static final Logger logger = LoggerFactory.getLogger(HomeOracleController.class);
 	
-	@Inject
+	@Resource(name = "dataSource_oracle")
 	private DataSource dataSource;
 	
 	//@Autowired
@@ -45,9 +45,10 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/oracle", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		System.out.println("http://localhost:8085/springdashboard/oracle 들어옴");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -61,11 +62,11 @@ public class HomeController {
 		try {
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = (Connection) dataSource.getConnection();
-			System.out.println("DB 연결 완료");
+			System.out.println("Oracle DB 연결 완료");
 			model.addAttribute("dbConn", "DB 연결 완료");
 			
 		} catch (Exception e) {
-			System.out.println("DB 연결 오류");
+			System.out.println("Oracle DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
 			e.printStackTrace();
 		}
@@ -78,11 +79,12 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		*/
-		PostDTO post = dao.read(1000);
-		//System.out.println("읽기 테스트" + post);
+		System.out.println("읽기 테스트");
+		PostDTO post = dao.readOracle(1000);
+		System.out.println(post);
 		
-		System.out.println(dao.readAll());
-		model.addAttribute("list", dao.readAll());
+		System.out.println(dao.readAllOracle());
+		model.addAttribute("list", dao.readAllOracle());
 		
 		/*
 		System.out.println("쓰기 테스트");
@@ -124,36 +126,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		*/
-		return "home";
-	}
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String homePost(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("myName", " 백지훈");
-		
-		//db연동 테스트
-		try {
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = (Connection) dataSource.getConnection();
-			System.out.println("DB 연결 완료");
-			model.addAttribute("dbConn", "DB 연결 완료");
-			
-		} catch (Exception e) {
-			System.out.println("DB 연결 오류");
-			model.addAttribute("dbConn", "DB 연결 오류");
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("list", dao.readAll());
-		
-		return "home";
+		return "/oracle";
 	}
 	
 }
