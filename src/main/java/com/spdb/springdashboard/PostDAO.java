@@ -19,7 +19,7 @@ public class PostDAO {
 		session.insert("boardMapper.write", post);
 	}
 	//Read
-	public PostDTO read(int post_id) {
+	public PostDTO read(long post_id) {
 		PostDTO post = session.selectOne("boardMapper.read", post_id);
 		return post;
 	}

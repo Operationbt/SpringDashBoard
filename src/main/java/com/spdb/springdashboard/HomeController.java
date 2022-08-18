@@ -2,7 +2,9 @@ package com.spdb.springdashboard;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -61,9 +63,8 @@ public class HomeController {
 		try {
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = (Connection) dataSource.getConnection();
-			System.out.println("DB 연결 완료");
-			model.addAttribute("dbConn", "DB 연결 완료");
-			
+			System.out.println("Oracle DB 연결 완료");
+			model.addAttribute("dbConn", "Oracle DB 연결 완료");		
 		} catch (Exception e) {
 			System.out.println("DB 연결 오류");
 			model.addAttribute("dbConn", "DB 연결 오류");
@@ -78,8 +79,9 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		*/
-		PostDTO post = dao.read(1000);
-		//System.out.println("읽기 테스트" + post);
+		System.out.println("읽기 테스트");
+		PostDTO post = dao.read(1005);
+		System.out.println(post);
 		
 		System.out.println(dao.readAll());
 		model.addAttribute("list", dao.readAll());

@@ -3,27 +3,24 @@
 <mapper namespace="boardMapper">
 	<!-- Create -->
 	<insert id="write" parameterType="PostDTO">
-		INSERT INTO post_tb (post_writer, post_title, post_content, post_date)
-		VALUES (#{post_writer}, #{post_title}, #{post_content}, now());
+		INSERT INTO post_orcl2 (post_id, post_writer, post_title, post_content, post_date)
+		VALUES (auto_incr.nextval, #{post_writer}, #{post_title}, #{post_content}, SYSDATE)
 	</insert>
 	<!-- Read -->
-	<select id="read" parameterType="int" resultType="PostDTO">
-		SELECT *
-		FROM post_tb
-		WHERE post_id = #{value}
+	<select id="read" parameterType="long" resultType="PostDTO">
+		SELECT * FROM post_orcl2 WHERE post_id = #{value}
 	</select>
 	<select id="readAll" resultType="PostDTO">
-		SELECT *
-		FROM post_tb;
+		SELECT * FROM post_orcl2
 	</select>
 	<!-- Update -->
 	<update id="update" parameterType="PostDTO">
-		UPDATE post_tb SET post_title = #{post_title}, post_content = #{post_content}
-		WHERE (post_id = #{post_id});
+		UPDATE post_orcl2 SET post_title = #{post_title}, post_content = #{post_content}
+		WHERE (post_id = #{post_id})
 	</update>
 	<!-- Delete -->
 	<delete id="delete" parameterType="int">
-		DELETE FROM post_tb
-		WHERE post_id = #{value};
+		DELETE FROM post_orcl2
+		WHERE post_id = #{value}
 	</delete>
 </mapper>

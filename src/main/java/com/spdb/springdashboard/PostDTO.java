@@ -26,7 +26,7 @@ public class PostDTO {
 		this.post_content = post_content;
 		this.post_date = post_date;
 	}
-	public int getPost_id() {
+	public long getPost_id() {
 		return post_id;
 	}
 	public void setPost_id(int post_id) {
