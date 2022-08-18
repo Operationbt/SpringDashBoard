@@ -2,7 +2,9 @@ package com.spdb.springdashboard;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -64,6 +66,14 @@ public class HomeOracleController {
 			Connection conn = (Connection) dataSource.getConnection();
 			System.out.println("Oracle DB 연결 완료");
 			model.addAttribute("dbConn", "DB 연결 완료");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from post_orcl");
+			while(rs.next()) {
+				System.out.println(rs.getString("post_title"));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
 			
 		} catch (Exception e) {
 			System.out.println("Oracle DB 연결 오류");
@@ -80,7 +90,7 @@ public class HomeOracleController {
 		}
 		*/
 		System.out.println("읽기 테스트");
-		PostDTO post = dao.readOracle(1000);
+		PostDTO post = dao.readOracle(1002);
 		System.out.println(post);
 		
 		System.out.println(dao.readAllOracle());
@@ -126,7 +136,7 @@ public class HomeOracleController {
 			e.printStackTrace();
 		}
 		*/
-		return "/oracle";
+		return "homeOracle";
 	}
 	
 }

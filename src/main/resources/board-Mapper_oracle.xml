@@ -3,27 +3,27 @@
 <mapper namespace="boardMapper_oracle">
 	<!-- Create -->
 	<insert id="write" parameterType="PostDTO">
-		INSERT INTO post_orcl (ID, WRITER, TITLE, POSTCONTENT, POSTDATE)
-		VALUES (auto_incr.nextval, #{WRITER}, #{TITLE}, #{POSTCONTENT}, SYSDATE);
+		INSERT INTO post_orcl (post_id, post_writer, post_title, post_content, post_date)
+		VALUES (auto_incr.nextval, #{post_writer}, #{post_title}, #{post_content}, SYSDATE)
 	</insert>
 	<!-- Read -->
 	<select id="read" parameterType="int" resultType="PostDTO">
 		SELECT *
 		FROM post_orcl
-		WHERE ID = #{value};
+		WHERE post_id = #{value}
 	</select>
 	<select id="readAll" resultType="PostDTO">
 		SELECT *
-		FROM post_orcl;
+		FROM post_orcl
 	</select>
 	<!-- Update -->
 	<update id="update" parameterType="PostDTO">
-		UPDATE post_orcl SET TITLE = #{post_title}, POSTCONTENT = #{post_content}
-		WHERE (ID = #{post_id});
+		UPDATE post_orcl SET post_title = #{post_title}, post_content = #{post_content}
+		WHERE (post_id = #{post_id})
 	</update>
 	<!-- Delete -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM post_orcl
-		WHERE ID = #{value};
+		WHERE post_id = #{value}
 	</delete>
 </mapper>
