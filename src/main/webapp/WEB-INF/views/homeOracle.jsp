@@ -15,6 +15,7 @@
 	<P>  The time on the server is ${serverTime}. </P>
 	<P>  My name is ${myName}. </P>
 	<P>Oracle DB연결 상태 : ${dbConn}</P>
+	<P><a href="./">MySQL DB로 이동</a></P>
 	
 	<table border="1" width="880">
 	        <tr>
@@ -34,14 +35,14 @@
 			<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	        <c:forEach items="${list}" var="postDTO">
 				<tr>
-			        <td><a href="./read?post_id=${postDTO.post_id}">${postDTO.post_id}</a></td>
-			        <td><a href="./read?post_id=${postDTO.post_id}">${postDTO.post_title}</a></td>
+			        <td><a href="./readOracle?post_id=${postDTO.post_id}">${postDTO.post_id}</a></td>
+			        <td><a href="./readOracle?post_id=${postDTO.post_id}">${postDTO.post_title}</a></td>
 			        <td>${postDTO.post_writer}</td>
 			        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${postDTO.post_date}" />
 					</td>
 				</tr>
 			</c:forEach>		
 	</table>
-	<a href="./write"><button type ="submit">글쓰기</button></a>
+	<a href="./writeOracle"><button type ="submit">글쓰기</button></a>
 </body>
 </html>

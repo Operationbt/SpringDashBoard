@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<a href="./">목록</a>
+<a href="./">MySQL</a>
+/
+<a href="./oracle">Oracle</a>
 </body>
 </html>

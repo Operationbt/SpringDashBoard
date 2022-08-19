@@ -32,6 +32,9 @@ public class HomeController {
 	@Inject
 	private DataSource dataSource;
 	
+	@Resource(name = "dataSource_oracle")
+	private DataSource dataSource_oracle;
+	
 	//@Autowired
 	//private spbdService service; //DB사용하는거
 	
@@ -126,34 +129,4 @@ public class HomeController {
 		*/
 		return "home";
 	}
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String homePost(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("myName", " 백지훈");
-		
-		//db연동 테스트
-		try {
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = (Connection) dataSource.getConnection();
-			System.out.println("DB 연결 완료");
-			model.addAttribute("dbConn", "DB 연결 완료");
-			
-		} catch (Exception e) {
-			System.out.println("DB 연결 오류");
-			model.addAttribute("dbConn", "DB 연결 오류");
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("list", dao.readAll());
-		
-		return "home";
-	}
-	
 }

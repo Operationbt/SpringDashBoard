@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>
-		Hello world!  
+		Hello MySQL!  
 	</h1>
 	
 	<P>  The time on the server is ${serverTime}. </P>
@@ -41,7 +41,7 @@
 			        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${postDTO.post_date}" />
 					</td>
 				</tr>
-			</c:forEach>		
+			</c:forEach>	
 	</table>
 	<a href="./write"><button type ="submit">글쓰기</button></a>
 </body>
