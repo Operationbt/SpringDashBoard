@@ -4,5 +4,6 @@
 <configuration> 
 	<typeAliases>
 		<typeAlias alias="PostDTO" type="com.spdb.springdashboard.PostDTO"/>
+		<typeAlias alias="PostOracleDTO" type="com.spdb.springdashboard.PostOracleDTO"/>
 	</typeAliases>
 </configuration>

@@ -2,22 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper_oracle">
 	<!-- Create -->
-	<insert id="write" parameterType="PostDTO">
+	<insert id="write" parameterType="PostOracleDTO">
 		INSERT INTO post_orcl (post_id, post_writer, post_title, post_content, post_date)
 		VALUES (auto_incr.nextval, #{post_writer}, #{post_title}, #{post_content}, SYSDATE)
 	</insert>
 	<!-- Read -->
-	<select id="read" parameterType="int" resultType="PostDTO">
+	<select id="read" parameterType="int" resultType="PostOracleDTO">
 		SELECT *
 		FROM post_orcl
 		WHERE post_id = #{value}
 	</select>
-	<select id="readAll" resultType="PostDTO">
+	<select id="readAll" resultType="PostOracleDTO">
 		SELECT *
 		FROM post_orcl
 	</select>
 	<!-- Update -->
-	<update id="update" parameterType="PostDTO">
+	<update id="update" parameterType="PostOracleDTO">
 		UPDATE post_orcl SET post_title = #{post_title}, post_content = #{post_content}
 		WHERE (post_id = #{post_id})
 	</update>

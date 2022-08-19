@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReadOracleController {
-	@Resource(name = "postDAO")
-	private PostDAO dao;
+	@Resource(name = "postOracleDAO")
+	private PostOracleDAO dao;
 	
 	@RequestMapping(value = "/readOracle", method = RequestMethod.GET)
 	public String showPage(@RequestParam("post_id")int post_id, Model model) {
-		PostDTO post = dao.readOracle(post_id);
+		PostOracleDTO post = dao.read(post_id);
 		System.out.println("읽기 페이지 내용" + post);
 		
 		model.addAttribute("postDTO", post);

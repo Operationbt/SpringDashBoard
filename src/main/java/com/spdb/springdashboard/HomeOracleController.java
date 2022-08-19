@@ -40,8 +40,8 @@ public class HomeOracleController {
 	//@Inject
 	//private SqlSessionFactory sqlFactory;
 	
-	@Resource(name = "postDAO")
-	private PostDAO dao;
+	@Resource(name = "postOracleDAO")
+	private PostOracleDAO dao;
 	
 	
 	/**
@@ -90,11 +90,11 @@ public class HomeOracleController {
 		}
 		*/
 		System.out.println("읽기 테스트");
-		PostDTO post = dao.readOracle(1002);
+		PostOracleDTO post = dao.read(1002);
 		System.out.println(post);
 		
-		System.out.println(dao.readAllOracle());
-		model.addAttribute("list", dao.readAllOracle());
+		System.out.println(dao.readAll());
+		model.addAttribute("list", dao.readAll());
 		
 		/*
 		System.out.println("쓰기 테스트");

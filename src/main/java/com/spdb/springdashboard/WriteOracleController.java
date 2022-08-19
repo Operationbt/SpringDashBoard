@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class WriteOracleController {
-	@Resource(name = "postDAO")
-	private PostDAO dao;
+	@Resource(name = "postOracleDAO")
+	private PostOracleDAO dao;
 	
 	@RequestMapping(value = "/writeOracle", method = RequestMethod.GET)
 	public String showWritePage() {
@@ -26,11 +26,11 @@ public class WriteOracleController {
 		System.out.println("writer : " + request.getParameter("writer"));
 		System.out.println("content : " + request.getParameter("content"));
 		
-		PostDTO post = new PostDTO();
+		PostOracleDTO post = new PostOracleDTO();
 		post.setPost_title(request.getParameter("title"));
 		post.setPost_writer(request.getParameter("writer"));
 		post.setPost_content(request.getParameter("content"));
-		dao.writeOracle(post); // 글작성 서비스 호출	
+		dao.write(post); // 글작성 서비스 호출	
 		
 	    return "redirect:/oracle"; // 작성이 완료된 후 오라클페이지로 리턴
 	}
